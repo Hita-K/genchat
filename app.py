@@ -15,7 +15,7 @@ g.close()
 
 # Load LLaMa
 from llama_cpp import Llama
-llm = Llama(model_path="../llama.cpp/models/llama-2-70b-chat.ggmlv3.q2_K.bin", n_ctx=2048, n_gqa=8)
+llm = Llama(model_path="../llama.cpp/models/medalpaca-13B.ggmlv3.q5_1.bin", n_ctx=2048)
 
 
 ## CLASS ##
@@ -56,15 +56,15 @@ class Character:
 
     final_context = [final_context, float(top_results[0][0].cpu().detach().numpy())]
 
-    return final_context, themes
+    return final_context[0], themes
 
   def style_transfer(self, context, themes, question, qa_pairs):
     self.s_prompt = ""
     for q, a in qa_pairs:
-        self.s_prompt += f'\n\nPatient:{q}\nCounselor:{a}'
+        self.s_prompt += f'\n\nPatient: {q}\nCounselor: {a}'
     theme = themes[0]
-    self.s_prompt += f'\n\nPatient:{question}\nCounselor:'
-    self.f_prompt = f"{context}\n\nUsing the source text above, respond as if you are a genetic counselor talking to a patient who has two copies of the apolipoprotein E (APOE4) allele, a major genetic risk factor of Alzheimer's disease. Make sure to use proper grammar and explain the term in multiple ways. Print a ## when you are done generating. {self.s_prompt}"
+    self.s_prompt += f'\n\nPatient: {question}\nCounselor: '
+    self.f_prompt = f"{context}\n\nUsing only relevant information from above, respond as if you are a genetic counselor talking to a patient who has two copies of the apolipoprotein E (APOE4) allele, a major genetic risk factor of Alzheimer's disease. Respond directly and concisely to the patient's question. Make sure to use proper grammar and explain the term in multiple ways. {self.s_prompt}"
 
 
     try :
@@ -76,7 +76,7 @@ class Character:
                                             top_p=.2,
                                             frequency_penalty=0,
                                             presence_penalty=0,
-                                            stop=['##', 'Patient:']
+                                            stop=['Patient:']
                                             )
         # print(self.completion)
         self.completion = self.completion["choices"][0]["text"]
