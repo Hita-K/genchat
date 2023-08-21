@@ -15,7 +15,7 @@ g.close()
 
 # Load LLaMa
 from llama_cpp import Llama
-llm = Llama(model_path="../llama.cpp/models/medalpaca-13B.ggmlv3.q5_1.bin", n_ctx=2048)
+llm = Llama(model_path="../llama.cpp/models/alpaca.13b.ggmlv3.q8_0.bin", n_ctx=2048)
 
 
 ## CLASS ##
@@ -63,8 +63,8 @@ class Character:
     for q, a in qa_pairs:
         self.s_prompt += f'\n\nPatient: {q}\nCounselor: {a}'
     theme = themes[0]
-    self.s_prompt += f'\n\nPatient: {question}\nCounselor: '
-    self.f_prompt = f"{context}\n\nUsing only relevant information from above, respond as if you are a genetic counselor talking to a patient who has two copies of the apolipoprotein E (APOE4) allele, a major genetic risk factor of Alzheimer's disease. Respond directly and concisely to the patient's question. Make sure to use proper grammar and explain the term in multiple ways. {self.s_prompt}"
+    self.s_prompt += f'\n\nPatient question: {question}\nLLM prompt: '
+    self.f_prompt = f"Below is an instruction that describes a task, paired with some inputs that provide further context. Write a response that appropriately completes the request.\n\n### Instruction:\nDetermine if any parts of the below context are relevant to the below question. If so, concisely summarize the relevant information from the context in bullet points. If the context is not relevant to the question, output 'not relevant.'\n\n### Context:\n{context}\n\n### Question:\n{question}\n\n### Response:\n"
 
 
     try :
