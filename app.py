@@ -92,7 +92,7 @@ class Character:
     self.s_prompt += f'\n\nPatient question: {question}\nLLM prompt: '
     self.f_prompt = f"Below is an instruction that describes a task, paired with some inputs that provide further context. Write a response that appropriately completes the request.\n\n### Instruction:\nDetermine if any parts of the below context are relevant to the below question. If so, concisely summarize the relevant information from the context in bullet points. If the context is not relevant to the question, output 'not relevant.'\n\n### Context:\n{context}\n\n### Question:\n{question}\n\n### Response:\n"
 
-    print(self.f_prompt)
+    # print(self.f_prompt)
     self.completion = self.llm.complete(
        self.f_prompt,
         temperature=0.3,
@@ -110,9 +110,10 @@ c = Character(name='xyz')
 
 
 if __name__ == '__main__':
-    while True:
-        question = input("What question would you like to ask GenChat? \n Press q to quit\n\n")
-        if question == 'q':
-           break
-        context, themes = c.query_vector_index(question)
-        c.style_transfer(context, themes, question, [])
+  with open('faqs.txt') as f:
+    questions = f.readlines()
+
+  for question in questions:
+    print(f"Question: {question}")
+    context, themes = c.query_vector_index(question)
+    c.style_transfer(context, themes, question, [])
