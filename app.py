@@ -1,181 +1,128 @@
-import openai
 import os
 import pandas as pd
 import random
-import logging
-import sys
+import torch
+import openai
+import nltk
+import ssl
 
-import nest_asyncio
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
-nest_asyncio.apply()
+nltk.download()
 
-from llama_index.retrievers import VectorIndexRetriever
-from llama_index.indices.query.schema import QueryBundle
-from llama_index.indices.postprocessor import LLMRerank
-from llama_index.llms import OpenAI
+from sentence_transformers import SentenceTransformer, util, models
+from llama_index import VectorStoreIndex, SimpleDirectoryReader, ServiceContext
+from llama_index.embeddings import OpenAIEmbedding
 
-from IPython.display import display, HTML, Markdown
-
-logging.basicConfig(stream=sys.stdout, level=logging.INFO)
-logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
-from llama_index import (
-    VectorStoreIndex,
-    SimpleDirectoryReader,
-    ServiceContext,
-    LLMPredictor,
-)
 
 idk = ["I am not sure...", "I am so sorry, I don't know.", "I am afraid I do not know how to answer this question.", "I don't know. Even though I am an old man, my knowledge is limited. Can you ask me something else?", "I am sorry, I do not know the answer to that. I died over 500 years ago, so there are many things that I don't know. Can you ask me something else?"]
 
-# Load your API key from an environment variable or secret management service
-OPENAI_API_KEY = "blah"
+OPENAI_API_KEY = "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"
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 openai.api_key = OPENAI_API_KEY
 
-# do we need to change this to llama?
-llm = OpenAI(temperature=0, model="gpt-3.5-turbo")
-service_context = ServiceContext.from_defaults(llm=llm, chunk_size=512)
+def process_string(docs):
+    joinstring = ''.join(docs)
+    sections = joinstring.split('---')
+    sections = [s.strip() for s in sections if s.strip()]
+    processed_sections = []
+    for section in sections:
+        lines = section.split('\n')
+        lines = [line.strip() for line in lines if line.strip().startswith('*')]
+        processed_section = ''.join(lines)
+        processed_sections.append(processed_section)
+    return processed_sections
 
-# Read docs
-f = open("questions.txt", "r")
-# do we need to change this to a document object?
-docs = f.readlines()
-f.close()
-
-g = open("themes.txt", "r")
-answerdoc = g.readlines()
-g.close()
-
-
-## LLM Retrieval ##
-
-# pd.set_option("display.max_colwidth", -1)
-
-index = VectorStoreIndex.from_documents(docs, service_context=service_context)
-
-def get_retrieved_nodes(
-    query_str, vector_top_k=10, reranker_top_n=3, with_reranker=False
-):
-    query_bundle = QueryBundle(query_str)
-    # configure retriever
-    retriever = VectorIndexRetriever(
-        index=index,
-        similarity_top_k=vector_top_k,
-    )
-    retrieved_nodes = retriever.retrieve(query_bundle)
-
-    if with_reranker:
-        # configure reranker
-        reranker = LLMRerank(
-            choice_batch_size=5, top_n=reranker_top_n, service_context=service_context
-        )
-        retrieved_nodes = reranker.postprocess_nodes(retrieved_nodes, query_bundle)
-
-    return retrieved_nodes
-
-
-def pretty_print(df):
-    return display(HTML(df.to_html().replace("\\n", "<br>")))
-
-
-def visualize_retrieved_nodes(nodes) -> None:
-    result_dicts = []
-    for node in nodes:
-        result_dict = {"Score": node.score, "Text": node.node.get_text()}
-        result_dicts.append(result_dict)
-
-    pretty_print(pd.DataFrame(result_dicts))
-
-
+def safe_index(processed_sections, value):
+    try:
+        return processed_sections.index(value)
+    except ValueError:
+        return None
 
 ## CLASS ##
-from sentence_transformers import SentenceTransformer, util, models
-import torch
 
 class Character:
 
-  def __init__(self, name, image_driver=None):
-    
+  def __init__(self, name, docs_fp='summaries.txt', answerdoc_fp='themes.txt'):
     self.s_prompt = ""
     self.name = name
-    self.image_driver = image_driver
-    self.embedder = SentenceTransformer('all-MiniLM-L6-v2')
-    self.corpus_embeddings = self.embedder.encode(docs, convert_to_tensor=True)
 
-
-  def search_docs(self, query):
-    # Find the closest 5 sentences of the corpus for each query sentence based on cosine similarity
-
-    top_k = min(3, len(docs))
-    # print("These are the closest 2 sentences to the given query: \n\n", top_k)
-
-    query_embedding = self.embedder.encode(query, convert_to_tensor=True)
-
-    # We use cosine-similarity and torch.topk to find the highest 5 scores
-    cos_scores = util.cos_sim(query_embedding, self.corpus_embeddings)[0]
-    top_results = torch.topk(cos_scores, k=top_k)    
-    context = [docs[idx] for idx in top_results[1]]
-    themes = [answerdoc[idx] for idx in top_results[1]]
-
-    context_n = 2
-    final_context = ""
+    # Load docs
+    self.docs_fp = docs_fp
+    with open(docs_fp) as f:
+      self.docs = f.readlines()
     
-    while len(final_context) < 2000 and len(context) >= context_n:
-      context_n += 1
-      final_context = ''.join(context[:context_n])
 
-    final_context = [final_context, float(top_results[0][0].cpu().detach().numpy())]
-    print("These are the closest 2 sentences to the given query: \n\n", final_context)
+    with open(answerdoc_fp) as g:
+      self.answerdoc = g.readlines()
 
-    return final_context, themes
-  
+    # LlamaIndex stuff
+    self.embedding_model = OpenAIEmbedding()
+    self.service_context = ServiceContext.from_defaults(embed_model=self.embedding_model)
+    self.build_vector_index()
+
+  def build_vector_index(self):
+    documents = SimpleDirectoryReader(input_files=[self.docs_fp]).load_data()
+    self.index = VectorStoreIndex.from_documents(documents, service_context=self.service_context)
+
+
+  def query_vector_index(self, query):
+    processed_sections = process_string(self.docs)
+    retriever = self.index.as_retriever(similarity_top_k=3)
+    top_results = retriever.retrieve(query)
+    reslist = [top_results[i].node.get_text() for i in range(len(top_results))]
+    indices = [safe_index(processed_sections, process_string([reslist[0]])[i]) for i in range(len(reslist))]
+    intindices = [x for x in indices if isinstance(x, int)]
+
+    themes = [self.answerdoc[i] for i in intindices]
+
+    return reslist, themes
+
+
   def style_transfer(self, context, themes, question, qa_pairs):
     self.s_prompt = ""
     for q, a in qa_pairs:
-        self.s_prompt += f'\n\nPatient:{q}\nCounselor:{a}'
+        self.s_prompt += f'\n\nPatient: {q}\nCounselor: {a}'
     theme = themes[0]
-    self.s_prompt += f'\n\nPatient:{question}\nCounselor:'
-    self.f_prompt = f"Modify this text as if you are a genetic counselor talking to a patient who has two copies of the apolipoprotein E (APOE4) allele, a major genetic risk factor of Alzheimer's disease. Make sure to use proper grammar and explain the term in multiple ways:\"{context}\"{self.s_prompt}"
+    self.s_prompt += f'\n\nPatient question: {question}\nCounselor: '
+    self.f_prompt = f"You are a genetic counselor talking to a patient who has 2 APoE E4 genes. The patient asks the following question:\n{question}\n\n Answer this question as a genetic counselor. Make sure to use the following information in your asnwer when appropriate: \n{context}\n\n When answering the question, make sure you use the following theme(s) in your response: {theme}. Keep the response short and do not use lists."
 
-
-    try :
+    try:
         self.completion = openai.Completion.create(
                                             model = "text-davinci-003",
-                                            prompt= "What is the capital of France?",
+                                            prompt=self.f_prompt,
                                             temperature=0.3,
                                             max_tokens=256,
                                             top_p=.2,
                                             frequency_penalty=0,
                                             presence_penalty=0, 
                                             )
-        # print(self.completion)
         self.completion = self.completion["choices"][0]["text"]
+        print("Completion: \n\n", self.completion)
     except:
-        print("in except")
-        return random.choice(idk)
-    # self.completion = self.completion[:self.completion.rfind('.')]+'.'
+       return random.choice(idk)
     self.s_prompt += self.completion +'\n'
-    print("Completion: \n\n", self.completion)
-    # print(self.f_prompt)
     return self.completion
 
 c = Character(name='xyz')
 
 
 if __name__ == '__main__':
+  with open('faqs.txt') as f:
+    questions = f.readlines()
+
+  for i, question in enumerate(questions):
+    print(f"Question: {question}")
+    context, themes = c.query_vector_index(question)
+    completion = c.style_transfer(context, themes, question, [])
+    os.makedirs(f'retrieved_contexts/q{i}', exist_ok=True) 
+    with open(f'retrieved_contexts/q{i}/contexts.txt', 'w') as f:
+        f.write('\n\n---\n'.join(context))
+    with open(f'retrieved_contexts/q{i}/completions.txt', 'w') as g:
+       g.write(completion)
     
-    new_nodes = get_retrieved_nodes(
-    "What is the definition of MCI?",
-    vector_top_k=10,
-    reranker_top_n=3,
-    with_reranker=False,
-)
-
-    # while True:
-    #     question = input("What question would you like to ask GenChat? \n Press q to quit\n\n")
-    #     if question == 'q':
-    #        break
-    #     context, themes = c.search_docs(question)
-    #     c.style_transfer(context, themes, question+" Please give me a long answer.", [])
-
-
