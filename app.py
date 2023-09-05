@@ -93,8 +93,7 @@ class Character:
         self.s_prompt += f'\n\nPatient: {q}\nCounselor: {a}'
     theme = themes[0]
     self.s_prompt += f'\n\nPatient question: {question}\nCounselor: '
-    self.f_prompt = f"You are a genetic counselor talking to a patient who has 2 APoE E4 genes. The patient asks the following question:\n{question}\n\n Answer this question as a genetic counselor. Make sure to use the following information in your asnwer when appropriate: \n{context}\n\n When answering the question, make sure you use the following theme(s) in your response: {theme}. Keep the response short and do not use lists."
-    # print(self.f_prompt)
+    self.f_prompt = f"You are a genetic counselor talking to a patient with two copies of the ApoE E4 allele. The patient asks the following question:\n{question}\n\n Answer this question as a genetic counselor. Make sure to use the following information in your asnwer when appropriate: \n{context}\n\n When answering the question, make sure you use the following techniques when crafting your response: {theme}. Keep the response short and do not use lists."
 
     try:
         self.completion = openai.Completion.create(
