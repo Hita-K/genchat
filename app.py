@@ -23,7 +23,8 @@ class Character:
     # Load docs
     self.docs_fp = docs_fp
     with open(docs_fp) as f:
-      self.docs = f.readlines()
+      s = f.read()
+      self.docs = s.split('\n\n---\n')
 
     with open(answerdoc_fp) as g:
       self.answerdoc = g.readlines()

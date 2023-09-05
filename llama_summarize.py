@@ -10,8 +10,8 @@ if __name__ == '__main__':
     prompt_template = 'Summarize the important information in following transcription of a genetic counselor speaking with a patient who is learning about their ApoE test result: %s'
     ## Read input file
     with open('questions.txt') as f:
-    snippets = f.readlines()
-    snippets = [s.strip() for s in snippets]
+        snippets = f.readlines()
+        snippets = [s.strip() for s in snippets]
     ## Call LLM
     for s in tqdm(snippets):
         response = await ai.chat_round_str(prompt_template % s)
