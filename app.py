@@ -22,7 +22,7 @@ from llama_index.embeddings import OpenAIEmbedding
 
 idk = ["I am not sure...", "I am so sorry, I don't know.", "I am afraid I do not know how to answer this question.", "I don't know. Even though I am an old man, my knowledge is limited. Can you ask me something else?", "I am sorry, I do not know the answer to that. I died over 500 years ago, so there are many things that I don't know. Can you ask me something else?"]
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 openai.api_key = OPENAI_API_KEY
 
@@ -55,6 +55,8 @@ class Character:
     # Load docs
     self.docs_fp = docs_fp
     with open(docs_fp) as f:
+      # s = f.read()
+      # self.docs = s.split('\n\n---\n')
       self.docs = f.readlines()
     
 
@@ -73,13 +75,14 @@ class Character:
 
   def query_vector_index(self, query):
     processed_sections = process_string(self.docs)
+    # print(len(processed_sections))
     retriever = self.index.as_retriever(similarity_top_k=3)
     top_results = retriever.retrieve(query)
     reslist = [top_results[i].node.get_text() for i in range(len(top_results))]
     indices = [safe_index(processed_sections, process_string([reslist[0]])[i]) for i in range(len(reslist))]
     intindices = [x for x in indices if isinstance(x, int)]
-
     themes = [self.answerdoc[i] for i in intindices]
+
 
     return reslist, themes
 
@@ -91,6 +94,7 @@ class Character:
     theme = themes[0]
     self.s_prompt += f'\n\nPatient question: {question}\nCounselor: '
     self.f_prompt = f"You are a genetic counselor talking to a patient who has 2 APoE E4 genes. The patient asks the following question:\n{question}\n\n Answer this question as a genetic counselor. Make sure to use the following information in your asnwer when appropriate: \n{context}\n\n When answering the question, make sure you use the following theme(s) in your response: {theme}. Keep the response short and do not use lists."
+    # print(self.f_prompt)
 
     try:
         self.completion = openai.Completion.create(
@@ -103,10 +107,11 @@ class Character:
                                             presence_penalty=0, 
                                             )
         self.completion = self.completion["choices"][0]["text"]
-        print("Completion: \n\n", self.completion)
+        # print("Completion: \n\n", self.completion)
     except:
        return random.choice(idk)
     self.s_prompt += self.completion +'\n'
+    # print(self.completion)
     return self.completion
 
 c = Character(name='xyz')
