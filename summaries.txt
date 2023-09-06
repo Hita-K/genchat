@@ -1254,15 +1254,6 @@ Sure, here's a summary of the important information in the transcription:
 ---
 Sure, here's a summary of the important information in the transcription:
 
-* The genetic counselor explains that small, measurable changes in cognition can occur in individuals with the ApoE gene, potentially leading to early signs of dementia.
-* The counselor notes that individuals with the ApoE gene have a higher risk of developing Alzheimer's disease, and that one of three possible outcomes can occur:
-	1. No cognitive decline
-	2. Mild cognitive impairment
-	3. Alzheimer's disease
-
----
-Sure, here's a summary of the important information in the transcription:
-
 * The genetic counselor explains that individuals with the ApoE gene can have three possible outcomes:
 	1. Remaining stable with the diagnosis, but not returning to normal brain aging.
 	2. Returning to normal brain aging, with examples such as recovering from a mild stroke or car accident.
@@ -1416,5 +1407,3 @@ Sure, here's a summary of the important information in the transcription:
 * The counselor suggests activities such as puzzles, crossword puzzles, and taking classes or workshops in areas of interest as ways to keep the mind active.
 * The counselor emphasizes the importance of staying physically active and not spending all day sitting at home.
 * The counselor encourages the patient to engage in activities that will keep their body and brain active.
-
----
