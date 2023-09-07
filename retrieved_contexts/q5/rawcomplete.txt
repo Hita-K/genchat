@@ -1,0 +1,9 @@
+The APOE gene plays a significant role in the risk of developing late-onset Alzheimer's disease, and it has three common alleles: ε2, ε3, and ε4.
+
+APOE ε3 is considered the "neutral" allele, meaning that individuals with two ε3 alleles (ε3/ε3) have an average risk of developing Alzheimer's disease relative to the general population.
+
+APOE ε4 is associated with an increased risk. Having one ε4 allele (ε3/ε4) increases your risk compared to those with ε3/ε3, and having two ε4 alleles (ε4/ε4) further increases this risk. It's worth noting that not everyone with one or even two ε4 alleles will develop Alzheimer's disease; it merely increases the likelihood. Many other factors, including other genetic, environmental, and lifestyle factors, come into play.
+
+Conversely, APOE ε2 is considered protective. Individuals with at least one ε2 allele, such as ε2/ε3 or ε2/ε2, tend to have a lower risk of developing Alzheimer's disease compared to those with ε3/ε3. However, the presence of an ε2 allele doesn't guarantee protection; it only reduces the risk.
+
+Remember that while APOE is a significant genetic risk factor for Alzheimer's, it is not deterministic. Many individuals with ε4 alleles never develop the disease, and some without ε4 alleles do. It's a complex interplay of genetics, environment, and lifestyle. If you or a loved one have concerns about your APOE status and risk for Alzheimer's, consulting with a medical professional can provide a clearer understanding and guidance on potential preventive measures.
