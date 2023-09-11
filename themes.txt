@@ -1,9 +1,9 @@
 Distilling definitions into “take home messages”,Recognizing patients’ prior background knowledge
 Distilling definitions into “take home messages”
 Describing scope of risk
-Describing scope of risk,acknowledging uncertainty of risk
-Describing scope of risk,acknowledging uncertainty of risk 
-Describing scope of risk,Considering broader effects of risk like how this might affect the family
+Describing scope of risk,Acknowledging uncertainty of risk
+Describing scope of risk,Acknowledging uncertainty of risk 
+Describing scope of risk,Considering broader effects of risk
 Describing scope of risk
 Relating to other participants,Acknowledging uncertainty of risk
 Recognizing patients’ prior background knowledge
@@ -15,68 +15,68 @@ Distilling definitions into “take home messages”
 Describing scope of risk
 Acknowledging uncertainty of risk
 Describing scope of risk
-Acknowledging uncertainty of risk,describing scope of risk 
+Acknowledging uncertainty of risk,Describing scope of risk 
 Acknowledging uncertainty of risk
 Acknowledging uncertainty of risk
 Relating to other participants
 Describing scope of risk
-Describing scope of risk, acknowledging uncertainty of risk
-relating to other participants, describing scope of risk and acknowledging uncertainty of risk
-describing scope of risk
-Recognizing patients’ prior background knowledge
-describing scope of risk
-describing scope of risk
+Describing scope of risk, Acknowledging uncertainty of risk
+Relating to other participants, Describing scope of risk, Acknowledging uncertainty of risk
 Describing scope of risk
-Acknowledging uncertainty of risk,describing scope of risk
-describing scope of risk,Acknowledging uncertainty of risk,Considering broader effects of risk
-describing scope of risk
+Recognizing patients’ prior background knowledge
+Describing scope of risk
+Describing scope of risk
+Describing scope of risk
+Acknowledging uncertainty of risk,Describing scope of risk
+Describing scope of risk,Acknowledging uncertainty of risk,Considering broader effects of risk
+Describing scope of risk
 Considering broader effects of risk
-acknowledging uncertainty of risk
-describing scope of risk,acknowledging uncertainty of risk
+Acknowledging uncertainty of risk
+Describing scope of risk,Acknowledging uncertainty of risk
 Considering broader effects of risk
-describing scope of risk 
+Describing scope of risk 
 Distilling definitions into “take home messages”
 Distilling definitions into “take home messages”
 Distilling definitions into “take home messages”
 Distilling definitions into “take home messages”
 Describing scope of risk
-acknowledging uncertainty of risk,Distilling definitions into “take home messages”
-describing scope of risk
+Acknowledging uncertainty of risk,Distilling definitions into “take home messages”
+Describing scope of risk
 Recognizing patients’ prior background knowledge
-describing scope of risk
+Describing scope of risk
 Relating to other participants
-describing scope of risk,acknowledging uncertainty of risk
+Describing scope of risk,Acknowledging uncertainty of risk
 Considering broader effects of risk
-describing scope of risk,acknowledging uncertainty of risk
+Describing scope of risk,Acknowledging uncertainty of risk
 Identifying when to defer to other specialists’ opinion
-relating to other participants
-relating to other participants
-describing scope of risk
-describing scope of risk,acknowledging uncertainty of risk 
-Considering broader effects of risk
-relating to other participants
-Describing scope of risk
-acknowledging uncertainty of risk
-describing scope of risk
-relating to other participants
-Distilling definitions into “take home messages”
-Distilling definitions into “take home messages”
-acknowledging uncertainty of risk
-relating to other participants
-Considering broader effects of risk
-Considering broader effects of risk
-Describing scope of risk
-Describing scope of risk
-acknowledging uncertainty of risk
-Considering broader effects of risk
-describing scope of risk,acknowledging uncertainty of risk
-acknowledging uncertainty of risk and describing scope of risk 
-Distilling definitions into “take home messages”
-Distilling definitions into “take home messages”
-Describing scope of risk,acknowledging uncertainty of risk
-describing scope of risk
 Relating to other participants
-describing scope of risk,Considering broader effects of risk
+Relating to other participants
+Describing scope of risk
+Describing scope of risk,Acknowledging uncertainty of risk 
+Considering broader effects of risk
+Relating to other participants
+Describing scope of risk
+Acknowledging uncertainty of risk
+Describing scope of risk
+Relating to other participants
+Distilling definitions into “take home messages”
+Distilling definitions into “take home messages”
+Acknowledging uncertainty of risk
+Relating to other participants
+Considering broader effects of risk
+Considering broader effects of risk
+Describing scope of risk
+Describing scope of risk
+Acknowledging uncertainty of risk
+Considering broader effects of risk
+Describing scope of risk,Acknowledging uncertainty of risk
+Acknowledging uncertainty of risk, Describing scope of risk 
+Distilling definitions into “take home messages”
+Distilling definitions into “take home messages”
+Describing scope of risk,Acknowledging uncertainty of risk
+Describing scope of risk
+Relating to other participants
+Describing scope of risk,Considering broader effects of risk
 Relating to other participants
 Considering broader effects of risk
 Considering broader effects of risk
@@ -84,80 +84,80 @@ Distilling definitions into “take home messages”
 Acknowledging uncertainty of risk
 Relating to other participants
 Relating to other participants
-Describing scope of risk,acknowledging uncertainty of risk 
+Describing scope of risk,Acknowledging uncertainty of risk 
 Relating to other participants
 Describing scope of risk
-Explaining medical terms in multiple ways, relating to other participants
-Describing scope of risk, explaining medical terms in different ways
+Explaining medical terms in multiple ways, Relating to other participants
+Describing scope of risk, Explaining medical terms in multiple ways
 Describing scope of risk 
 Acknowledging uncertainty of risk
-Considering broader effects of risks 
+Considering broader effects of risk 
 Describing scope of risk 
 Describing scope of risk
 Considering broader effects of risk
 Acknowledging uncertainty of risk,Describing scope of risk
 Describing scope of risk
-Acknowledging uncertainty of risk,describing scope of risk 
+Acknowledging uncertainty of risk,Describing scope of risk 
 Distilling definitions into “take home messages”
 Distilling definitions into “take home messages”
-relating to other participants
+Relating to other participants
 Describing scope of risk
-Describing scope of risk,acknowledging uncertainty of risk 
+Describing scope of risk,Acknowledging uncertainty of risk 
 Considering broader effects of risk
 Considering broader effects of risk
 Considering broader effects of risk
-Acknowledging uncertainty of risk,describing scope of risk
-Acknowledging uncertainty of risk,describing scope of risk
+Acknowledging uncertainty of risk,Describing scope of risk
+Acknowledging uncertainty of risk,Describing scope of risk
 Acknowledging uncertainty of risk
-describing scope of risk
-describing scope of risk
-acknowledging uncertainty of risk
+Describing scope of risk
+Describing scope of risk
+Acknowledging uncertainty of risk
 Considering broader effects of risk
 Distilling definitions into “take home messages”
-describing scope of risk
+Describing scope of risk
 Distilling definitions into “take home messages”
-describing scope of risk 
-acknowledging uncertainty of risk
+Describing scope of risk 
+Acknowledging uncertainty of risk
 Explaining medical terms in multiple ways
 Explaining medical terms in multiple ways
 Relating to other participants
 Considering broader effects of risk
-acknowledging uncertainty of risk
+Acknowledging uncertainty of risk
 Considering broader effects of risk
 Considering broader effects of risk
 Considering broader effects of risk
 Relating to other participants
-describing scope of risk,acknowledging uncertainty of risk
+Describing scope of risk,Acknowledging uncertainty of risk
 Distilling definitions into “take home messages”
 Considering broader effects of risk
 Describing scope of risk
-acknowledging uncertainty of risk
-relating to other participants
+Acknowledging uncertainty of risk
+Relating to other participants
 Considering broader effects of risk
-relating to other participants
+Relating to other participants
 Recognizing patients’ prior background knowledge
-describing scope of risk, acknowledging uncertainty of risk
-Describing scope of risk, acknowledging uncertainty of risk
+Describing scope of risk, Acknowledging uncertainty of risk
+Describing scope of risk, Acknowledging uncertainty of risk
 Considering broader effects of risk
 Considering broader effects of risk
-acknowledging uncertainty of risk, Considering broader effects of risk
-describing scope of risk,acknowledging uncertainty of risk
-describing scope of risk
+Acknowledging uncertainty of risk, Considering broader effects of risk
+Describing scope of risk,Acknowledging uncertainty of risk
+Describing scope of risk
 Considering broader effects of risk
 Considering broader effects of risk
 Considering broader effects of risk
 Describing scope of risk
 Describing scope of risk
 Considering broader effects of risk
-acknowledging uncertainty of risk
-acknowledging uncertainty of risk
+Acknowledging uncertainty of risk
+Acknowledging uncertainty of risk
 Distilling definitions into “take home messages”
-acknowledging uncertainty of risk
+Acknowledging uncertainty of risk
 Distilling definitions into “take home messages”
 Describing scope of risk
 Relating to other participants
-describing scope of risk 
-describing scope of risk, acknowledging uncertainty of risk
+Describing scope of risk 
+Describing scope of risk, Acknowledging uncertainty of risk
 Considering broader effects of risk
 Considering broader effects of risk
 Relating to other participants
@@ -166,10 +166,10 @@ Considering broader effects of risk
 Considering broader effects of risk
 Considering broader effects of risk
 Relating to other participants
-Describing scope of risk, acknowledging uncertainty of risk
-Describing scope of risk, acknowledging uncertainty of risk
-Describing scope of risk, acknowledging uncertainty of risk
-Explaining medical terms in multiple ways, relating to other participants
+Describing scope of risk, Acknowledging uncertainty of risk
+Describing scope of risk, Acknowledging uncertainty of risk
+Describing scope of risk, Acknowledging uncertainty of risk
+Explaining medical terms in multiple ways, Relating to other participants
 Describing scope of risk
 Considering broader effects of risk
 Considering broader effects of risk
