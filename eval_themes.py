@@ -28,8 +28,10 @@ with open('themes.json') as f:
     themes = json.load(f).keys()
 
 named_responses = {'llama': llama_responses, 'gpt_constrained': gpt_constrained_responses, 'gpt_unconstrained': gpt_unconstrained_responses, 'human': human_responses}
-for response_name, responses in named_responses.items():  
-    print(response_name)
+themes_by_model = dict()
+for model, responses in named_responses.items():  
+    print(model)
     theme_similarities = [[group_similarity(resp, theme) for theme in themes] for resp in responses]
     output_df = pd.DataFrame(theme_similarities, columns=themes)
+    themes_by_model[model] = output_df
     print(output_df.to_csv())

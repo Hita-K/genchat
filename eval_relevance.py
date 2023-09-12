@@ -1,9 +1,7 @@
 import whylogs as why
 import glob
 
-from langkit import llm_metrics # alternatively use 'light_metrics'
-from whylogs.experimental.core.udf_schema import udf_schema
-
+from langkit.input_output import init, prompt_response_similarity
 
 ## Load docs
 with open('qlist.txt') as f: 
@@ -12,16 +10,21 @@ responses = []
 for fp in glob.glob('retrieved_contexts/q*/llama_completion.txt'):
     with open(fp) as f:
         responses.append(f.read())
+# responses = []
+# for fp in glob.glob('retrieved_contexts/q*/completions.txt'):
+#     with open(fp) as f:
+#         responses.append(f.read())
+# responses = []
+# for fp in glob.glob('retrieved_contexts/q*/rawcomplete.txt'):
+#     with open(fp) as f:
+#         responses.append(f.read())
 # with open('genanswers.txt') as f:
 #     responses = [s.strip() for s in f.readlines()]
-assert len(responses) == len(questions)
+assert len(questions) == len(responses)
+l = [{'prompt': [q], 'response': [r]} for q, r in zip(questions, responses)]
 
 ## Load langkit
-why.init(session_type='whylabs_anonymous')
-themes.init(theme_file='themes.json')
-text_schema = udf_schema()
+init()
 
-l = [{'prompt': q, 'response': r} for q, r in zip(questions, responses)]
-profiles = [why.log(d, schema=text_schema, name=f'q{i}') for i, d in enumerate(l)]
-relevance_scores = [p.view().to_pandas().loc['response.relevance_to_prompt', 'distribution/max'] for p in profiles]
+relevance_scores = [prompt_response_similarity(d)[0] for d in l]
 print(relevance_scores)
